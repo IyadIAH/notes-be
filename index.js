@@ -1,6 +1,9 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 
+app.use(cors())
+app.use(express.static('dist'))
 app.use(express.json())
 
 let notes = [
@@ -25,6 +28,16 @@ let notes = [
       "important": true
     }
   ]
+
+  const requestLogger = (request, response, next) => {
+    console.log('Method:', request.method)
+    console.log('Path:  ', request.path)
+    console.log('Body:  ', request.body)
+    console.log('---')
+    next()
+  }
+
+app.use(requestLogger)
 
 const generateId = () => {
     const maxId = notes.length > 0
