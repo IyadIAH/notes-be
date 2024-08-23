@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 if (process.argv.length < 3) {
@@ -7,7 +8,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://iyadhmidat:${password}@fullstack.071t46g.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Fullstack`
+const url = 'mongodb+srv://iyadhmidat:CbfKKlUcix8abPz9@fullstack.071t46g.mongodb.net/testNoteApp?retryWrites=true&w=majority&appName=Fullstack'
 
 mongoose.set('strictQuery', false)
 
@@ -21,18 +22,18 @@ const noteSchema = new mongoose.Schema({
 const Note = mongoose.model('Note', noteSchema)
 
 const note = new Note({
-  content: 'Mongoose makes it easy',
+  content: 'HTML is easy',
   important: true,
 })
 
-// note.save().then(result => {
-//     console.log(`${note} is saved`)
-//     mongoose.connection.close()
-// })
-
-Note.find({}).then(result => {
-  result.forEach(note => {
-    console.log(note)
-  })
-  mongoose.connection.close
+note.save().then(result => {
+    console.log(`${note} is saved`)
+    mongoose.connection.close()
 })
+
+// Note.find({}).then(result => {
+//   result.forEach(note => {
+//     console.log(note)
+//   })
+//   mongoose.connection.close
+// })
