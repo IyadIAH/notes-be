@@ -1,7 +1,8 @@
 require('dotenv').config()
+const config = require('./utils/config')
 const mongoose = require('mongoose')
 
-const url = 'mongodb+srv://iyadhmidat:CbfKKlUcix8abPz9@fullstack.071t46g.mongodb.net/testNoteApp?retryWrites=true&w=majority&appName=Fullstack'
+const url = config.MONGODB_URL
 
 mongoose.set('strictQuery', false)
 
